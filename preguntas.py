@@ -11,17 +11,25 @@ Utilice el archivo `data.csv` para resolver las preguntas.
 
 
 """
+import csv
+
+x = open("data.csv", "r").readlines()
+x = [z.replace("\n", "") for z in x]
+x = [z.split("\t") for z in x]
 
 
 def pregunta_01():
     """
     Retorne la suma de la segunda columna.
-
     Rta/
     214
-
     """
-    return
+    y = [z[1] for z in x[0:]]
+    Columna_2 = []
+    for i in y:
+        j = int(i)
+        Columna_2.append(j)
+    return sum(Columna_2)
 
 
 def pregunta_02():
@@ -39,7 +47,16 @@ def pregunta_02():
     ]
 
     """
-    return
+    from collections import Counter
+    from operator import itemgetter
+
+    y = [z[0] for z in x[0:]]
+
+    m = (list(Counter(y).most_common()))
+
+    m.sort(key=itemgetter(0), reverse=False)
+
+    return m
 
 
 def pregunta_03():
@@ -57,7 +74,26 @@ def pregunta_03():
     ]
 
     """
-    return
+    y = [z[0:2] for z in x[0:]]
+
+    Tuplas = list(map(tuple, y))
+
+    sorted_tupla = sorted(Tuplas, key=lambda x: x[0])
+
+    nueva_tupla = [(x[0], int(x[1])) for x in sorted_tupla]
+
+    diccionario={}
+    for key, value in nueva_tupla:
+        if key not in diccionario.keys():
+            diccionario[key]=[]
+        diccionario[key].append(value)
+        
+    new_sequence=[]
+    for key, value in diccionario.items():
+        tupla=(key, sum(value))
+        new_sequence.append(tupla)
+
+    return new_sequence
 
 
 def pregunta_04():
@@ -82,7 +118,27 @@ def pregunta_04():
     ]
 
     """
-    return
+    y = [z[2].split("-")[1] for z in x[0:]]
+
+    new_fecha = []
+    for word in y:
+        new_fecha.append((word, 1))
+
+    sorted_fecha = sorted(new_fecha, key=lambda x: x[0])
+
+    diccionario={}
+    for key, value in sorted_fecha:
+        if key not in diccionario.keys():
+            diccionario[key]=[]
+        diccionario[key].append(value)
+        
+    new_sequence=[]
+    for key, value in diccionario.items():
+        tupla=(key, sum(value))
+        new_sequence.append(tupla)
+
+    return new_sequence
+
 
 
 def pregunta_05():
@@ -100,7 +156,23 @@ def pregunta_05():
     ]
 
     """
-    return
+    y = [z[0:2] for z in x[0:]]
+    Tuplas = list(map(tuple, y))
+    sorted_tupla = sorted(Tuplas, key=lambda x: x[0])
+    nueva_tupla = [(x[0], int(x[1])) for x in sorted_tupla]
+
+    diccionario={}
+    for key, value in nueva_tupla:
+        if key not in diccionario.keys():
+            diccionario[key]=[]
+        diccionario[key].append(value)
+        
+    new_sequence=[]
+    for key, value in diccionario.items():
+        tupla=(key, max(value), min(value))
+        new_sequence.append(tupla)
+
+    return new_sequence
 
 
 def pregunta_06():
@@ -125,7 +197,34 @@ def pregunta_06():
     ]
 
     """
-    return
+    y = [z[4].split(",") for z in x[0:]]
+    Tuplas = list(map(tuple, y))
+
+    tuplas_individuales = []
+
+    for tupla in Tuplas:
+        elementos_tupla = []
+
+        for elemento in tupla:
+            clave, valor = elemento.split(':')
+            elementos_tupla.append((clave, int(valor)))  
+        tuplas_individuales.append(tuple(elementos_tupla))
+
+    lista_combinada = [tupla for tuplas_internas in tuplas_individuales for tupla in tuplas_internas]
+    sorted_tupla = sorted(lista_combinada, key=lambda x: x[0])
+
+    diccionario={}
+    for key, value in sorted_tupla:
+        if key not in diccionario.keys():
+            diccionario[key]=[]
+        diccionario[key].append(value)
+        
+    new_sequence=[]
+    for key, value in diccionario.items():
+        tupla=(key, min(value), max(value))
+        new_sequence.append(tupla)
+
+    return new_sequence
 
 
 def pregunta_07():
@@ -149,7 +248,24 @@ def pregunta_07():
     ]
 
     """
-    return
+
+    y = [z[0:2] for z in x[0:]]
+    Tuplas = list(map(tuple, y))
+    sorted_tupla = sorted(Tuplas, key=lambda x: x[1])
+    Tuplass = [tuple(reversed(tupla)) for tupla in sorted_tupla]
+
+    diccionario={}
+    for key, value in Tuplass:
+        if key not in diccionario.keys():
+            diccionario[key]=[]
+        diccionario[key].append(value)
+        
+    new_sequence=[]
+    for key, value in diccionario.items():
+        tupla=(key, value)
+        new_sequence.append(tupla)   
+
+    return new_sequence
 
 
 def pregunta_08():
@@ -174,8 +290,26 @@ def pregunta_08():
     ]
 
     """
-    return
+    y = [z[0:2] for z in x[0:]]
+    Tuplas = list(map(tuple, y))
+    sorted_tupla = sorted(Tuplas, key=lambda x: x[1])
+    Tuplass = [tuple(reversed(tupla)) for tupla in sorted_tupla]
 
+    diccionario={}
+    for key, value in Tuplass:
+        if key not in diccionario.keys():
+            diccionario[key]=[]
+        diccionario[key].append(value)
+        
+    new_sequence=[]
+    for key, value in diccionario.items():
+        tupla=(key, value)
+        new_sequence.append(tupla)
+
+    nueva_lista = [(x[0], sorted(list(set((x[1]))))) for x in new_sequence]
+
+    return nueva_lista
+    
 
 def pregunta_09():
     """
@@ -197,7 +331,34 @@ def pregunta_09():
     }
 
     """
-    return
+    y = [z[4].split(",") for z in x[0:]]
+    Tuplas = list(map(tuple, y))
+
+    tuplas_individuales = []
+
+    for tupla in Tuplas:
+        elementos_tupla = []
+
+        for elemento in tupla:
+            clave, valor = elemento.split(':')
+            elementos_tupla.append((clave, 1))  
+        tuplas_individuales.append(tuple(elementos_tupla))
+
+    lista_combinada = [tupla for tuplas_internas in tuplas_individuales for tupla in tuplas_internas]
+    sorted_tupla = sorted(lista_combinada, key=lambda x: x[0])
+
+    diccionario={}
+    for key, value in sorted_tupla:
+        if key not in diccionario.keys():
+            diccionario[key]=[]
+        diccionario[key].append(value)
+        
+    new_sequence=[]
+    for key, value in diccionario.items():
+        tupla=(key, sum(value))
+        new_sequence.append(tupla)
+
+    return new_sequence
 
 
 def pregunta_10():
@@ -216,9 +377,12 @@ def pregunta_10():
         ("E", 3, 3),
     ]
 
-
     """
-    return
+    y = [[z[0], z[3], z[4]] for z in x[0:]]
+    Tuplas = list(map(tuple, y))
+    nueva_lista = [(x[0], len((x[1].split(','))), len(x[2].split(','))) for x in Tuplas]
+
+    return nueva_lista
 
 
 def pregunta_11():
@@ -239,7 +403,33 @@ def pregunta_11():
 
 
     """
-    return
+    y = [[z[1], z[3]] for z in x[0:]]
+    Tuplas = list(map(tuple, y))
+    new_tuplas = [(int(x[0]), (x[1].split(','))) for x in Tuplas]
+
+    tuplas_separadas = []
+    for tupla in new_tuplas:
+        valor1 = tupla[0]
+        lista = tupla[1]
+        nuevas_tuplas = [(valor1, elemento) for elemento in lista]
+        tuplas_separadas.extend(nuevas_tuplas)
+        
+    sorted_tupla = sorted(tuplas_separadas, key=lambda x: x[1])
+    Tuplass = [tuple(reversed(tupla)) for tupla in sorted_tupla]
+
+
+    diccionario={}
+    for key, value in Tuplass:
+        if key not in diccionario.keys():
+            diccionario[key]=[]
+        diccionario[key].append(value)
+        
+    new_sequence=[]
+    for key, value in diccionario.items():
+        tupla=(key, sum(value))
+        new_sequence.append(tupla)
+
+    return new_sequence
 
 
 def pregunta_12():
@@ -257,4 +447,50 @@ def pregunta_12():
     }
 
     """
-    return
+    y = [[z[0], z[4].split(",")] for z in x[0:]]
+    Tuplas = list(map(tuple, y))
+    new = [(x[0], (tuple(x[1]))) for x in Tuplas]
+
+    diccionario={}
+    for key, value in new:
+        if key not in diccionario.keys():
+            diccionario[key]=[]
+        diccionario[key].append(value)
+        
+    new_sequence=[]
+    for key, value in diccionario.items():
+        tupla=(key, value)
+        new_sequence.append(tupla)
+
+    lista_tuplas = []
+
+    for letra, tuplas in new_sequence:
+
+        temp_list = []
+        for tup in tuplas:
+            temp_list.extend(tup)
+        lista_tuplas.append((letra, (tuple(temp_list))))
+
+    tuplas_separadas = []
+    for tupla in lista_tuplas:
+        letra = tupla[0]
+        lista = tupla[1]
+        nuevas_tuplas = [(letra, elemento) for elemento in lista]
+        tuplas_separadas.extend(nuevas_tuplas)
+
+    nuevas_tuplas = [(t[0], int(t[1].split(":")[1])) for t in tuplas_separadas]
+
+    diccionario={}
+    for key, value in nuevas_tuplas:
+        if key not in diccionario.keys():
+            diccionario[key]=[]
+        diccionario[key].append(value)
+        
+    new_sequence=[]
+    for key, value in diccionario.items():
+        tupla=(key, sum(value))
+        new_sequence.append(tupla)
+
+    sorted_tupla = sorted(new_sequence, key=lambda x: x[0])    
+
+    return sorted_tupla
