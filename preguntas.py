@@ -303,7 +303,7 @@ def pregunta_08():
         
     new_sequence=[]
     for key, value in diccionario.items():
-        tupla=(key, value)
+        tupla=(int(key), value)
         new_sequence.append(tupla)
 
     nueva_lista = [(x[0], sorted(list(set((x[1]))))) for x in new_sequence]
