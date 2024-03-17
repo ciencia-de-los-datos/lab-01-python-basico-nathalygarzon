@@ -262,7 +262,7 @@ def pregunta_07():
         
     new_sequence=[]
     for key, value in diccionario.items():
-        tupla=(key, value)
+        tupla=(int(key), value)
         new_sequence.append(tupla)   
 
     return new_sequence
@@ -358,7 +358,7 @@ def pregunta_09():
         tupla=(key, sum(value))
         new_sequence.append(tupla)
 
-    return new_sequence
+    return dict(new_sequence)
 
 
 def pregunta_10():
@@ -429,7 +429,7 @@ def pregunta_11():
         tupla=(key, sum(value))
         new_sequence.append(tupla)
 
-    return new_sequence
+    return dict(new_sequence)
 
 
 def pregunta_12():
@@ -493,4 +493,4 @@ def pregunta_12():
 
     sorted_tupla = sorted(new_sequence, key=lambda x: x[0])    
 
-    return sorted_tupla
+    return dict(sorted_tupla)
